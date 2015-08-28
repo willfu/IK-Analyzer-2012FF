@@ -54,7 +54,13 @@ public class DefaultConfig implements Configuration{
 	//配置属性——扩展停止词典
 	private static final String EXT_STOP = "ext_stopwords";
 	
-	private Properties props;
+	/**
+	 * @ xindongzhang
+	 * 配置属性——扩展同义词词典
+	 */
+    private static final String EXT_SYNONYMS = "ext_synonyms";
+	
+    private Properties props;
 	/*
 	 * 是否使用smart方式分词
 	 */
@@ -164,6 +170,26 @@ public class DefaultConfig implements Configuration{
 		}		
 		return extStopWordDictFiles;		
 	}
-			
+	
+	/**
+	 * @ xindongzhang
+	 * 获取同义词词典的配置路径
+	 */
+	public List<String> getExtSynonymDictionarys(){
+		List<String> extSynonymDictFiles = new ArrayList<String>(2);
+		String extSynonymDictCfg = props.getProperty(EXT_SYNONYMS);
+		if(extSynonymDictCfg != null){
+			//使用;分割多个扩展字典配置
+			String[] filePaths = extSynonymDictCfg.split(";");
+			if(filePaths != null){
+				for(String filePath : filePaths){
+					if(filePath != null && !"".equals(filePath.trim())){
+						extSynonymDictFiles.add(filePath.trim());
+					}
+				}
+			}
+		}		
+		return extSynonymDictFiles;
+	}
 
 }

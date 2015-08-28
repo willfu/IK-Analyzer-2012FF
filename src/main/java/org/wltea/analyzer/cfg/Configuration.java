@@ -75,5 +75,10 @@ public interface Configuration {
 	 * @return List<String> 相对类加载器的路径
 	 */
 	public List<String> getExtStopWordDictionarys();
-			
+	
+	/**
+	 * @ xindongzhang
+	 * 获取同义词词典的配置路径
+	 */
+	public List<String> getExtSynonymDictionarys();
 }
